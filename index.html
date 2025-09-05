@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kevin Acebuche - Future Developer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Image Popup Notification -->
+    <div class="image-popup" id="imagePopup">
+      <img src="./assets/Main.png" alt="Kevin's profile picture notification" />
+    </div>
+    <!-- Header -->
+    <header>
+      <nav>
+        <div class="logo">KvnDvlpr</div>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#certificates">Certificates</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1>Hello! I'm Kevin</h1>
+        <p>
+          Aspiring Web Developer | Passionate about design, learning, and growth
+        </p>
+        <a href="#about" class="btn">About Me</a>
+        <a href="#contact" class="btn btn-outline">Contact</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="about-content">
+        <div class="profile-image-wrapper" onclick="profileClick()">
+          <img
+            id="kevphoto"
+            src="./assets/Main.png"
+            alt="Kevin Acebuche profile picture"
+          />
+        </div>
+        <div class="about-text">
+          <h3>About Me 🙋‍♂️</h3>
+          <p>
+            Hello! I'm <b>Kevin Acebuche</b>, a future Web developer fueled by
+            passion, creativity, and the determination to grow in this
+            ever-evolving industry.
+          </p>
+          <p>
+            A passionate learner and aspiring Web Developer who loves crafting
+            designs and experimenting with creative ideas. While I’m still
+            starting out and exploring whether Full Stack is for me, I know that
+            my passion for design, curiosity, and willingness to take risks will
+            fuel my journey to becoming a developer. I’m excited to keep
+            learning and growing in this field.
+          </p>
+          <p>
+            Recently, I started studying HTML, CSS, and JavaScript, it’s been
+            about three weeks now, going on a month. The journey can be
+            challenging at times, but I believe in myself and the process. With
+            consistency, patience, and determination, I know I can push through
+            and make it as a developer
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section class="certificates" id="certificates">
+      <div class="container">
+        <h2 class="section-title">🎓 My Certificates</h2>
+        <div class="certificates-grid">
+          <div class="certificate-item">
+            <img
+              src="./assets/SOLOLEARN-HTML.jpg"
+              alt="Kevin's HTML Certificate"
+            />
+          </div>
+          <div class="certificate-item">
+            <img
+              src="./assets/SOLOLEARN-CSS.jpg"
+              alt="Kevin's CSS Certificate"
+            />
+          </div>
+          <div class="certificate-item">
+            <img
+              src="./assets/SOLOLEARN-JAVASCRIPT.jpg"
+              alt="Kevin's JavaScript Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2 class="section-title">Reach Out 📩</h2>
+        <p>Have an idea or advice? I’m always excited to hear from you💖.</p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <h4>📧Email</h4>
+            <p>kvncrlacebuche@gmail.com</p>
+          </div>
+          <div class="contact-item">
+            <h4>📞Phone</h4>
+            <p>+63-931-955-464</p>
+          </div>
+          <div class="contact-item">
+            <h4>📍Location</h4>
+            <p>Rizal, Philippines</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 KvnDvlpr All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
