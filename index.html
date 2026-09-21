@@ -3,133 +3,511 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kevin Acebuche - Future Developer</title>
+    <title>Kevin Acebuche — Web Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Kevin Acebuche, a web developer from Rizal, Philippines. Builder of Daywell, a faith-centered planner built with Next.js, Supabase and Tailwind."
+    />
+    <meta name="theme-color" content="#f7f2e9" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Image Popup Notification -->
-    <div class="image-popup" id="imagePopup">
-      <img src="./assets/Main.png" alt="Kevin's profile picture notification" />
-    </div>
     <!-- Header -->
-    <header>
-      <nav>
-        <div class="logo">KvnDvlpr</div>
-        <ul class="nav-links">
+    <header class="site-header" id="siteHeader">
+      <nav class="nav">
+        <a href="#home" class="logo">
+          <span class="logo-mark">K</span>
+          <span>KvnDvlpr</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
           <li><a href="#home">Home</a></li>
-          <li><a href="#about">About Me</a></li>
-          <li><a href="#certificates">Certificates</a></li>
+          <li><a href="#background">Background</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#stack">Stack</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><button type="button" class="nav-cta" data-open-cv>View CV</button></li>
         </ul>
-        <div class="hamburger" onclick="toggleMenu()">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+        <button
+          class="hamburger"
+          id="hamburger"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </nav>
     </header>
 
-    <!-- Home Section -->
-    <section class="hero" id="home">
-      <div class="hero-content">
-        <h1>Hello! I'm Kevin</h1>
-        <p>
-          Aspiring Web Developer | Passionate about design, learning, and growth
-        </p>
-        <a href="#about" class="btn">About Me</a>
-        <a href="#contact" class="btn btn-outline">Contact</a>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-      <div class="about-content">
-        <div class="profile-image-wrapper" onclick="profileClick()">
-          <img
-            id="kevphoto"
-            src="./assets/Main.png"
-            alt="Kevin Acebuche profile picture"
-          />
-        </div>
-        <div class="about-text">
-          <h3>About Me 🙋‍♂️</h3>
-          <p>
-            Hello! I'm <b>Kevin Acebuche</b>, a future Web developer fueled by
-            passion, creativity, and the determination to grow in this
-            ever-evolving industry.
-          </p>
-          <p>
-            A passionate learner and aspiring Web Developer who loves crafting
-            designs and experimenting with creative ideas. While I’m still
-            starting out and exploring whether Full Stack is for me, I know that
-            my passion for design, curiosity, and willingness to take risks will
-            fuel my journey to becoming a developer. I’m excited to keep
-            learning and growing in this field.
-          </p>
-          <p>
-            Recently, I started studying HTML, CSS, and JavaScript, it’s been
-            about three weeks now, going on a month. The journey can be
-            challenging at times, but I believe in myself and the process. With
-            consistency, patience, and determination, I know I can push through
-            and make it as a developer
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Certificates Section -->
-    <section class="certificates" id="certificates">
-      <div class="container">
-        <h2 class="section-title">🎓 My Certificates</h2>
-        <div class="certificates-grid">
-          <div class="certificate-item">
-            <img
-              src="./assets/SOLOLEARN-HTML.jpg"
-              alt="Kevin's HTML Certificate"
-            />
+    <main>
+      <!-- ================= HERO ================= -->
+      <section class="hero" id="home">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="status">
+              <span class="dot"></span>
+              Open to junior roles &amp; mentorship
+            </p>
+            <h1 class="hero-title">
+              <span class="word">Hi,</span> <span class="word">I'm</span> <span class="word accent">Kevin.</span><br />
+              <span class="word">I</span> <span class="word">build</span> <span class="word">for</span> <span class="word">the</span> <span class="word">web.</span>
+            </h1>
+            <p class="lede">
+              Web developer from Rizal, Philippines. I recently shipped
+              <a href="#projects" class="inline-link">Daywell</a>, a planner
+              built with Next.js, Supabase and Tailwind, and I'm just getting
+              started.
+            </p>
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-primary">See my work</a>
+              <button type="button" class="btn btn-ghost" data-open-cv>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
+                View CV
+              </button>
+            </div>
+            <ul class="hero-stack" aria-label="Tech I work with">
+              <li>TypeScript</li>
+              <li>React</li>
+              <li>Next.js</li>
+              <li>Supabase</li>
+              <li>Tailwind</li>
+            </ul>
           </div>
-          <div class="certificate-item">
-            <img
-              src="./assets/SOLOLEARN-CSS.jpg"
-              alt="Kevin's CSS Certificate"
-            />
-          </div>
-          <div class="certificate-item">
-            <img
-              src="./assets/SOLOLEARN-JAVASCRIPT.jpg"
-              alt="Kevin's JavaScript Certificate"
-            />
+
+          <div class="hero-visual" id="heroVisual">
+            <div class="blob-glow" aria-hidden="true"></div>
+            <div class="blob-back" aria-hidden="true"></div>
+            <div class="orbit" aria-hidden="true">
+              <span class="orbit-item" style="--a: 0deg"><img src="./assets/icons/react.svg" alt="" /></span>
+              <span class="orbit-item" style="--a: 120deg"><img src="./assets/icons/nextdotjs.svg" alt="" /></span>
+              <span class="orbit-item" style="--a: 240deg"><img src="./assets/icons/supabase.svg" alt="" /></span>
+            </div>
+            <div class="photo-blob">
+              <img
+                src="./assets/kevin.jpg"
+                alt="Kevin Acebuche smiling, wearing a rust-colored shirt"
+                width="1000"
+                height="1440"
+                fetchpriority="high"
+              />
+            </div>
+            <div class="float-tag tag-a">Fresh graduate</div>
+            <div class="float-tag tag-b">1 project shipped</div>
           </div>
         </div>
-      </div>
-    </section>
+        <a href="#background" class="scroll-cue" aria-label="Scroll to the next section">
+          <span class="scroll-cue-line"></span>
+          <span>Scroll</span>
+        </a>
+      </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-      <div class="container">
-        <h2 class="section-title">Reach Out 📩</h2>
-        <p>Have an idea or advice? I’m always excited to hear from you💖.</p>
-        <div class="contact-info">
-          <div class="contact-item">
-            <h4>📧Email</h4>
-            <p>kvncrlacebuche@gmail.com</p>
+      <!-- ================= BACKGROUND (card deck) ================= -->
+      <section class="background section" id="background">
+        <div class="bg-scene" aria-hidden="true">
+          <span class="blob blob-1"></span>
+          <span class="blob blob-2"></span>
+          <span class="blob blob-3"></span>
+        </div>
+
+        <div class="container">
+          <div class="section-heading deck-heading">
+            <div>
+              <h2>Beyond the code</h2>
+              <p class="sub">
+                Eight cards about who I am. One at a time, no peeking. Hit next.
+              </p>
+            </div>
+            <div class="deck-controls">
+              <span class="deck-counter" id="deckCounter" aria-live="polite">1 / 8</span>
+              <button type="button" class="deck-btn" id="deckPrev" aria-label="Previous card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+              </button>
+              <button type="button" class="deck-btn deck-btn-primary" id="deckNext" aria-label="Next card">
+                <span>Next</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
           </div>
-          <div class="contact-item">
-            <h4>📞Phone</h4>
-            <p>+63-931-955-464</p>
+
+          <div class="deck" id="deck" tabindex="0" aria-roledescription="carousel" aria-label="Cards about Kevin">
+            <ul class="deck-stack" id="deckStack">
+            <li class="deck-card" data-index="0" aria-hidden="false">
+              <img class="deck-img" src="./assets/background/education.jpg" alt="" loading="eager" />
+              <div class="deck-glass">
+                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/><path d="M22 10v6"/></svg></div>
+                <p class="deck-label">Education</p>
+                <h3>[Your degree, e.g. BS Information Technology]</h3>
+                <p class="deck-meta">[Your school] · Class of 2025</p>
+                <p class="deck-text">School gave me the fundamentals. Building real things after graduation is where it clicked.</p>
+              </div>
+            </li>
+            <li class="deck-card" data-index="1" aria-hidden="true">
+              <img class="deck-img" src="./assets/background/passion.jpg" alt="" loading="eager" />
+              <div class="deck-glass">
+                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg></div>
+                <p class="deck-label">What drives me</p>
+                <h3>Tools that help people live their days on purpose.</h3>
+                <p class="deck-text">Calm design, readable code, products that make ordinary days better. Daywell started as a personal need: one place for work, studies, and my walk with God.</p>
+              </div>
+            </li>
+            <li class="deck-card" data-index="2" aria-hidden="true">
+              <img class="deck-img" src="./assets/background/leader.jpg" alt="" loading="lazy" />
+              <div class="deck-glass">
+                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <p class="deck-label">Born to be a leader</p>
+                <h3>I step up when a group needs direction.</h3>
+                <p class="deck-text">In school projects I was usually the one setting the plan, splitting the work, and making sure everyone crossed the line together. I like owning outcomes, not just tasks.</p>
+              </div>
+            </li>
+            <li class="deck-card" data-index="3" aria-hidden="true">
+              <img class="deck-img" src="./assets/background/techy.jpg" alt="" loading="lazy" />
+              <div class="deck-glass">
+                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="m9 8 2 2-2 2M13 12h3"/></svg></div>
+                <p class="deck-label">I love being techy</p>
+                <h3>New tools, new gadgets, new ways to build.</h3>
+                <p class="deck-text">I read changelogs for fun, try every new framework release, and take things apart to see how they work. Curiosity is the engine behind everything I ship.</p>
+              </div>
+            </li>
+            <li class="deck-card" data-index="4" aria-hidden="true">
+              <img class="deck-img" src="./assets/background/media.jpg" alt="" loading="lazy" />
+              <div class="deck-glass">
+                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg></div>
+                <p class="deck-label">Taking pictures &amp; video</p>
+                <h3>I see the frame before I press the shutter.</h3>
+                <p class="deck-text">Photos and video taught me composition, light and timing. It is the same eye I bring to a layout: what to show, what to leave out, where the attention should land.</p>
+              </div>
+            </li>
+            <li class="deck-card" data-index="5" aria-hidden="true">
+              <img class="deck-img" src="./assets/background/piano.jpg" alt="" loading="lazy" />
+              <div class="deck-glass">
+                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v10M12 4v10M16 4v10"/><path d="M3 14h18"/></svg></div>
+                <p class="deck-label">Off the keyboard, on the keys</p>
+                <h3>I play piano.</h3>
+                <p class="deck-text">Music taught me patience and repetition long before code did. Practicing a piece until it flows is the same discipline as refactoring until it reads clean.</p>
+              </div>
+            </li>
+            <li class="deck-card" data-index="6" aria-hidden="true">
+              <img class="deck-img" src="./assets/background/design.jpg" alt="" loading="lazy" />
+              <div class="deck-glass">
+                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+                <p class="deck-label">The part I enjoy most</p>
+                <h3>I love design.</h3>
+                <p class="deck-text">Typography, spacing, color. I sketch the interface before I write a line of code, and I care how the empty state looks as much as the happy path.</p>
+              </div>
+            </li>
+            <li class="deck-card" data-index="7" aria-hidden="true">
+              <img class="deck-img" src="./assets/background/faith.jpg" alt="" loading="lazy" />
+              <div class="deck-glass">
+                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M12 6v8M9 9h6"/></svg></div>
+                <p class="deck-label">Faith &amp; focus</p>
+                <h3>Consistency over intensity.</h3>
+                <p class="deck-text">A verse in the morning, one clear list for the day, and the discipline to show up again tomorrow. That rhythm is why Daywell exists.</p>
+              </div>
+            </li>
+            </ul>
           </div>
-          <div class="contact-item">
-            <h4>📍Location</h4>
-            <p>Rizal, Philippines</p>
+
+          <div class="deck-progress" aria-hidden="true"><span id="deckProgress"></span></div>
+        </div>
+      </section>
+
+      <!-- ================= ABOUT ================= -->
+      <section class="about section" id="about">
+        <div class="container about-grid">
+          <div class="section-heading">
+            <h2>Starting out, and taking it seriously.</h2>
+            <button type="button" class="btn btn-ghost about-cv" data-open-cv>
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
+              Read my CV
+            </button>
+          </div>
+          <div class="about-body">
+            <p>
+              I'm <strong>Kevin Acebuche</strong>, a web developer fueled by
+              passion, creativity, and the determination to grow in an industry
+              that never stands still.
+            </p>
+            <p>
+              I started with HTML, CSS and JavaScript, then pushed straight into
+              a full-stack project. Daywell taught me TypeScript, React and
+              Next.js, how to model data in Postgres with Supabase, how to
+              protect it with row-level security, and how to test what I ship.
+            </p>
+            <p>
+              I love crafting designs and experimenting with creative ideas. My
+              eye for design, curiosity, and willingness to take risks are what
+              I'm betting on. The plan is simple: keep building, keep learning,
+              and show up every day.
+            </p>
+
+            <dl class="facts">
+              <div>
+                <dt>Based in</dt>
+                <dd>Rizal, PH</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>Full-stack web</dd>
+              </div>
+              <div>
+                <dt>Shipped</dt>
+                <dd>Daywell</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Open to work</dd>
+              </div>
+            </dl>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Footer -->
-    <footer>
-      <p>&copy; 2025 KvnDvlpr All rights reserved.</p>
+      <!-- ================= PROJECTS ================= -->
+      <section class="projects section" id="projects">
+        <div class="container">
+          <div class="section-heading center">
+            <h2>Things I've built</h2>
+            <p class="sub">Real, deployed, and used every day.</p>
+          </div>
+
+          <!-- Featured: Daywell -->
+          <article class="project featured">
+            <div class="project-preview">
+              <div class="browser">
+                <div class="browser-bar">
+                  <span></span><span></span><span></span>
+                  <div class="browser-url">daywell-project.vercel.app</div>
+                </div>
+                <a
+                  href="https://daywell-project.vercel.app"
+                  target="_blank"
+                  rel="noopener"
+                  class="browser-screen"
+                  aria-label="Open Daywell live site"
+                >
+                  <img
+                    src="./assets/daywell-preview.jpg"
+                    alt="Daywell login screen with its sun mascot"
+                    loading="lazy"
+                    width="1200"
+                    height="750"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <div class="project-head">
+                <img src="./assets/daywell-icon.png" alt="" width="44" height="44" class="project-logo" />
+                <div>
+                  <h3>Daywell</h3>
+                  <p class="project-tagline">A planner for work, studies, and your walk with God.</p>
+                </div>
+                <span class="live-pill"><span class="dot"></span>Live</span>
+              </div>
+
+              <p class="project-desc">
+                Full-stack daily planner: auth, tasks that repeat on their own,
+                a focus timer, a calendar, a verse of the day, and daily
+                progress. I built the whole thing, from the Postgres schema and
+                row-level security to the shadcn design system and the test
+                suite.
+              </p>
+
+              <div class="project-cols">
+                <div>
+                  <h4>What it does</h4>
+                  <ul class="project-features">
+                    <li>Supabase Auth with email confirmation</li>
+                    <li>Repeating tasks with a focus countdown</li>
+                    <li>Calendar with events and an upcoming list</li>
+                    <li>Verse of the day, rotating by day of year</li>
+                    <li>Row-level security per user</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>How it's built</h4>
+                  <ul class="project-features">
+                    <li>Next.js 16 App Router + server actions</li>
+                    <li>TypeScript, React 19, TanStack Query</li>
+                    <li>Tailwind v4 + shadcn/ui</li>
+                    <li>react-hook-form + zod validation</li>
+                    <li>Vitest unit tests, Playwright E2E</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="project-actions">
+                <a href="https://daywell-project.vercel.app" target="_blank" rel="noopener" class="btn btn-primary">
+                  Open live site
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                </a>
+                <a href="https://github.com/KvnDvlpr" target="_blank" rel="noopener" class="btn btn-ghost">
+                  <img src="./assets/icons/github.svg" alt="" class="btn-icon" />
+                  Source
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Secondary: this portfolio -->
+          <article class="project compact">
+            <div class="project-body">
+              <div class="project-head">
+                <span class="project-logo mark">K</span>
+                <div>
+                  <h3>This portfolio</h3>
+                  <p class="project-tagline">Hand-built, no framework, deployed on GitHub Pages.</p>
+                </div>
+                <span class="live-pill"><span class="dot"></span>Live</span>
+              </div>
+              <p class="project-desc">
+                Semantic HTML, a small token-based CSS system, and vanilla
+                JavaScript for the card deck, the skills explorer, the CV
+                viewer, and the contact form. No build step, loads in under a
+                second.
+              </p>
+              <ul class="chips" aria-label="Tech stack">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>GitHub Pages</li>
+              </ul>
+              <div class="project-actions">
+                <a href="https://github.com/KvnDvlpr/MyPortfolio2025" target="_blank" rel="noopener" class="btn btn-ghost">
+                  <img src="./assets/icons/github.svg" alt="" class="btn-icon" />
+                  Source
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ================= TECH STACK ================= -->
+      <section class="stack section" id="stack">
+        <div class="container">
+          <div class="section-heading center">
+            <h2>What I've actually used</h2>
+            <p class="sub">
+              Hover over a logo, or tap it on a phone, to see when I picked it up and what I built with it.
+            </p>
+          </div>
+
+          <div class="logo-wrap" id="logoWrap">
+            <div class="logo-grid" id="logoGrid" aria-label="Technologies I have used"></div>
+            <div class="skill-pop" id="skillPop" role="tooltip" aria-hidden="true">
+              <span class="skill-pop-arrow" aria-hidden="true"></span>
+              <div class="skill-pop-body" id="skillPopBody"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CONTACT ================= -->
+      <section class="contact section" id="contact">
+        <div class="container contact-card">
+          <div class="contact-copy">
+            <h2>Have an idea, a role, or some advice?</h2>
+            <p class="sub light">
+              Send me a message about anything you saw here. I read everything
+              and reply to everyone.
+            </p>
+            <ul class="contact-list">
+              <li>
+                <span class="label">Email</span>
+                <a href="mailto:kvncrlacebuche@gmail.com">kvncrlacebuche@gmail.com</a>
+              </li>
+              <li>
+                <span class="label">Phone</span>
+                <a href="tel:+63931955464">+63 931 955 464</a>
+              </li>
+              <li>
+                <span class="label">Location</span>
+                <span>Rizal, Philippines</span>
+              </li>
+              <li>
+                <span class="label">GitHub</span>
+                <a href="https://github.com/KvnDvlpr" target="_blank" rel="noopener">github.com/KvnDvlpr</a>
+              </li>
+            </ul>
+          </div>
+
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="field">
+              <label for="cf-name">Your name</label>
+              <input id="cf-name" name="name" type="text" autocomplete="name" required placeholder="Juan dela Cruz" />
+            </div>
+            <div class="field">
+              <label for="cf-email">Your email</label>
+              <input id="cf-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+            </div>
+            <div class="field">
+              <label for="cf-topic">What is this about?</label>
+              <select id="cf-topic" name="topic">
+                <option>Daywell feedback</option>
+                <option>Job or internship opportunity</option>
+                <option>Collaboration</option>
+                <option>Advice / mentorship</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" name="message" rows="5" required placeholder="Hi Kevin, I saw Daywell and..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-light btn-block">Send email</button>
+            <p class="form-note" id="formNote">
+              This opens your email app with the message pre-filled.
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <p>&copy; <span id="year"></span> Kevin Acebuche. Built by hand with HTML, CSS and JS.</p>
+        <a href="#home" class="back-top">Back to top</a>
+      </div>
     </footer>
+
+    <!-- CV viewer -->
+    <div class="cv-modal" id="cvModal" role="dialog" aria-modal="true" aria-labelledby="cvTitle" aria-hidden="true">
+      <div class="cv-panel">
+        <header class="cv-bar">
+          <div>
+            <h2 id="cvTitle">CV<span class="cv-name"> · Kevin Acebuche</span></h2>
+            <p>Scroll to read. Download when you're ready.</p>
+          </div>
+          <div class="cv-bar-actions">
+            <a href="./assets/Kevin-Acebuche-CV.pdf" download="Kevin-Acebuche-CV.pdf" class="btn btn-primary btn-sm" id="cvDownload">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+              Download PDF
+            </a>
+            <button type="button" class="icon-btn" id="cvClose" aria-label="Close CV">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </header>
+        <div class="cv-frame-wrap">
+          <iframe id="cvFrame" title="Kevin Acebuche CV" loading="lazy"></iframe>
+        </div>
+        <footer class="cv-foot">
+          <span>PDF · A4 · 1 page</span>
+          <a href="./assets/Kevin-Acebuche-CV.pdf" download="Kevin-Acebuche-CV.pdf" class="btn btn-light btn-sm">Download PDF</a>
+        </footer>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>
