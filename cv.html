@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kevin Acebuche — CV</title>
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #2b1a0f;
+        --ink-2: #5a4636;
+        --ink-3: #7a6353;
+        --brand: #421b00;
+        --accent: #d1835e;
+        --accent-ink: #a8552f;
+        --accent-2: #f0b48f;
+        --line: rgba(66, 27, 0, 0.12);
+        --paper: #ffffff;
+        --bg: #d9cfc2;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Inter", system-ui, sans-serif;
+        font-size: 9.7pt;
+        line-height: 1.45;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      ::selection {
+        background: var(--accent-2);
+      }
+
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.8rem 1.25rem;
+        background: var(--brand);
+        color: #fff;
+        font-size: 0.9rem;
+      }
+
+      .toolbar a,
+      .toolbar button {
+        font: inherit;
+        font-weight: 600;
+        color: var(--brand);
+        background: #fff;
+        border: 0;
+        border-radius: 999px;
+        padding: 0.55rem 1rem;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .toolbar .ghost {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+      }
+
+      body.embed .toolbar {
+        display: none;
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 1.5rem auto;
+        padding: 13mm 14mm 11mm;
+        background: var(--paper);
+        box-shadow: 0 20px 50px -20px rgba(43, 26, 15, 0.4);
+        display: grid;
+        grid-template-columns: 1fr 62mm;
+        column-gap: 10mm;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Sora", system-ui, sans-serif;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+
+      .head {
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 2rem;
+        padding-bottom: 4.5mm;
+        margin-bottom: 5mm;
+        border-bottom: 2px solid var(--brand);
+      }
+
+      .head h1 {
+        font-size: 24pt;
+        font-weight: 800;
+        color: var(--brand);
+      }
+
+      .head .role {
+        font-size: 11.5pt;
+        color: var(--accent-ink);
+        font-weight: 600;
+        margin-top: 2mm;
+      }
+
+      .contact {
+        list-style: none;
+        text-align: right;
+        font-size: 9.2pt;
+        color: var(--ink-2);
+        display: grid;
+        gap: 1mm;
+      }
+
+      .contact a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      h2 {
+        font-size: 9pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--accent-ink);
+        margin-bottom: 3mm;
+        padding-bottom: 1.5mm;
+        border-bottom: 1px solid var(--line);
+      }
+
+      section {
+        margin-bottom: 5mm;
+      }
+
+      .summary {
+        color: var(--ink-2);
+        font-size: 9.6pt;
+      }
+
+      .item {
+        margin-bottom: 3.5mm;
+      }
+
+      .item-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+      }
+
+      .item h3 {
+        font-size: 11.5pt;
+        font-weight: 700;
+      }
+
+      .item .when {
+        font-size: 9pt;
+        color: var(--ink-3);
+        white-space: nowrap;
+      }
+
+      .item .where {
+        font-size: 9.5pt;
+        color: var(--accent-ink);
+        font-weight: 600;
+        margin-bottom: 1.5mm;
+      }
+
+      .item p,
+      .item li {
+        color: var(--ink-2);
+        font-size: 9.2pt;
+      }
+
+      .item ul {
+        padding-left: 4mm;
+        margin-top: 1.5mm;
+        display: grid;
+        gap: 0.8mm;
+      }
+
+      .item li::marker {
+        color: var(--accent);
+      }
+
+      .link {
+        color: var(--brand);
+        text-decoration: none;
+        border-bottom: 1px solid var(--accent-2);
+      }
+
+      aside section {
+        margin-bottom: 4.5mm;
+      }
+
+      .tags {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.1mm;
+      }
+
+      .tags li {
+        padding: 0.7mm 2mm;
+        border-radius: 3mm;
+        background: #f7f2e9;
+        border: 1px solid var(--line);
+        font-family: "Sora", system-ui, sans-serif;
+        font-size: 7.7pt;
+        font-weight: 600;
+        color: var(--ink-2);
+      }
+
+      .group {
+        margin-bottom: 3mm;
+      }
+
+      .group h3 {
+        font-family: "Inter", system-ui, sans-serif;
+        font-size: 8.2pt;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink-3);
+        margin-bottom: 1.5mm;
+      }
+
+      .plain {
+        list-style: none;
+        display: grid;
+        gap: 1.4mm;
+        font-size: 9pt;
+        color: var(--ink-2);
+      }
+
+      .plain strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .plain.inline li {
+        display: flex;
+        justify-content: space-between;
+        gap: 2mm;
+      }
+
+      .plain small {
+        color: var(--ink-3);
+      }
+
+      .placeholder {
+        background: #fff3e8;
+        border-bottom: 1px dashed var(--accent);
+      }
+
+      .foot {
+        grid-column: 1 / -1;
+        margin-top: auto;
+        padding-top: 4mm;
+        border-top: 1px solid var(--line);
+        font-size: 8.2pt;
+        color: var(--ink-3);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      @media (max-width: 760px) {
+        .page {
+          width: 100%;
+          min-height: 0;
+          margin: 0;
+          padding: 8mm 6mm;
+          grid-template-columns: 1fr;
+          box-shadow: none;
+        }
+        .head {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 4mm;
+        }
+        .contact {
+          text-align: left;
+        }
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      @media print {
+        html,
+        body {
+          background: #fff;
+        }
+        .toolbar {
+          display: none;
+        }
+        .page {
+          margin: 0;
+          box-shadow: none;
+          width: 210mm;
+          min-height: 297mm;
+        }
+        .placeholder {
+          background: none;
+          border: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <span>Kevin Acebuche — CV</span>
+      <div>
+        <a class="ghost" href="./index.html">Back to portfolio</a>
+        <a href="./assets/Kevin-Acebuche-CV.pdf" download="Kevin-Acebuche-CV.pdf">Download PDF</a>
+      </div>
+    </div>
+
+    <main class="page">
+      <header class="head">
+        <div>
+          <h1>Kevin Acebuche</h1>
+          <p class="role">Web Developer · Full-stack (Next.js, Supabase, TypeScript)</p>
+        </div>
+        <ul class="contact">
+          <li><a href="mailto:kvncrlacebuche@gmail.com">kvncrlacebuche@gmail.com</a></li>
+          <li><a href="tel:+63931955464">+63 931 955 464</a></li>
+          <li>Rizal, Philippines</li>
+          <li><a href="https://github.com/KvnDvlpr">github.com/KvnDvlpr</a></li>
+          <li><a href="https://kvndvlpr.github.io/MyPortfolio2025/">kvndvlpr.github.io/MyPortfolio2025</a></li>
+        </ul>
+      </header>
+
+      <div class="main-col">
+        <section>
+          <h2>Profile</h2>
+          <p class="summary">
+            Fresh graduate and self-driven web developer. Went from HTML, CSS
+            and JavaScript to shipping a full-stack production app in the same
+            year: Daywell, a faith-centered daily planner built with Next.js,
+            Supabase and Tailwind, with unit and end-to-end tests. Strong eye
+            for design, calm interfaces, and readable code. Looking for a
+            junior developer role or internship where I can keep learning fast.
+          </p>
+        </section>
+
+        <section>
+          <h2>Projects</h2>
+
+          <div class="item">
+            <div class="item-head">
+              <h3>Daywell — daily planner</h3>
+              <span class="when">2025 · Live</span>
+            </div>
+            <p class="where">
+              <a class="link" href="https://daywell-project.vercel.app">daywell-project.vercel.app</a>
+              · Solo project, design to deployment
+            </p>
+            <p>
+              A planner for managing work, studies, and one's walk with God.
+              Login and signup, tasks that repeat on their own, a focus
+              countdown timer, a calendar with events, a verse of the day, and
+              daily progress.
+            </p>
+            <ul>
+              <li>Designed the Postgres schema, migrations, triggers and row-level security so each user only sees their own data.</li>
+              <li>Built auth with Supabase (email confirmation, session refresh via Next.js proxy) and server actions for login, signup and logout.</li>
+              <li>Implemented repeating tasks (daily, weekdays, weekly, custom), a derived "missed" state, and a shadcn/ui design system with a custom palette and loading skeletons.</li>
+              <li>Wrote Vitest unit tests (status rules, dates, schemas, verse rotation) and Playwright end-to-end tests; deployed on Vercel.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <div class="item-head">
+              <h3>Personal portfolio</h3>
+              <span class="when">2025 · Live</span>
+            </div>
+            <p class="where">
+              <a class="link" href="https://kvndvlpr.github.io/MyPortfolio2025/">kvndvlpr.github.io/MyPortfolio2025</a>
+              · HTML, CSS, JavaScript
+            </p>
+            <ul>
+              <li>Hand-built with no framework or build step: token-based CSS, stacked glass card deck, interactive tech-stack explorer, in-page CV viewer.</li>
+              <li>Responsive, keyboard-accessible, respects reduced-motion, deployed on GitHub Pages.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2>Education</h2>
+          <div class="item">
+            <div class="item-head">
+              <h3><span class="placeholder">[Your degree, e.g. BS Information Technology]</span></h3>
+              <span class="when">Class of 2025</span>
+            </div>
+            <p class="where"><span class="placeholder">[Your school], [City]</span></p>
+          </div>
+        </section>
+      </div>
+
+      <aside>
+        <section>
+          <h2>Tech stack</h2>
+          <div class="group">
+            <h3>Languages</h3>
+            <ul class="tags">
+              <li>TypeScript</li><li>JavaScript</li><li>HTML</li><li>CSS</li><li>SQL</li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3>Frontend</h3>
+            <ul class="tags">
+              <li>React 19</li><li>Next.js 16</li><li>Tailwind v4</li><li>shadcn/ui</li><li>Radix</li><li>TanStack Query</li><li>react-hook-form</li><li>zod</li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3>Backend &amp; data</h3>
+            <ul class="tags">
+              <li>Supabase</li><li>PostgreSQL</li><li>Row-level security</li><li>Server actions</li><li>REST APIs</li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3>Testing &amp; tooling</h3>
+            <ul class="tags">
+              <li>Vitest</li><li>Playwright</li><li>ESLint</li><li>Git &amp; GitHub</li><li>Vercel</li><li>GitHub Pages</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2>Certificates</h2>
+          <ul class="plain inline">
+            <li><strong>Introduction to HTML</strong><small>Sololearn · 2025</small></li>
+            <li><strong>Introduction to CSS</strong><small>Sololearn · 2025</small></li>
+            <li><strong>Introduction to JavaScript</strong><small>Sololearn · 2025</small></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Beyond work</h2>
+          <ul class="plain inline">
+            <li><strong>Piano</strong><small>Patience, on a different keyboard</small></li>
+            <li><strong>Faith</strong><small>The reason Daywell exists</small></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Languages</h2>
+          <ul class="plain inline">
+            <li><strong>Filipino</strong><small>Native</small></li>
+            <li><strong>English</strong><small>Professional</small></li>
+          </ul>
+        </section>
+      </aside>
+
+      <footer class="foot">
+        <span>Kevin Acebuche · Web Developer</span>
+        <span>References available on request</span>
+      </footer>
+    </main>
+
+    <script>
+      if (new URLSearchParams(location.search).has("embed")) {
+        document.body.classList.add("embed");
+      }
+    </script>
+  </body>
+</html>
