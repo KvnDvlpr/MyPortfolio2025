@@ -3,10 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kevin Acebuche — Web Developer</title>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t !== "dark" && t !== "light") {
+            t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          }
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
+    <title>Kevin Acebuche — Electronics Engineer building for the web</title>
     <meta
       name="description"
-      content="Portfolio of Kevin Acebuche, a web developer from Rizal, Philippines. Builder of Daywell, a faith-centered planner built with Next.js, Supabase and Tailwind."
+      content="Portfolio of Kevin Acebuche, an Electronics Engineering graduate from Teresa, Rizal, Philippines, moving into IT and web development. Technical support, CRM automation and self-taught web projects built with AI, including Daywell, a full-stack planner."
     />
     <meta name="theme-color" content="#f7f2e9" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,14 +29,14 @@
       href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=20260924l" />
   </head>
   <body>
     <!-- Header -->
     <header class="site-header" id="siteHeader">
       <nav class="nav">
         <a href="#home" class="logo">
-          <span class="logo-mark">K</span>
+          <span class="logo-mark"><svg viewBox="0 0 9 9" width="20" height="20" aria-hidden="true" shape-rendering="crispEdges"><use href="#kvnMark"/></svg></span>
           <span>KvnDvlpr</span>
         </a>
         <ul class="nav-links" id="navLinks">
@@ -30,64 +44,67 @@
           <li><a href="#background">Background</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#stack">Stack</a></li>
+          <li><a href="#stack">Technologies</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><button type="button" class="nav-cta" data-open-cv>View CV</button></li>
+          <li><button type="button" class="nav-cta" data-open-cv><span data-li="file-text" class="btn-icon"></span>View CV</button></li>
         </ul>
-        <button
-          class="hamburger"
-          id="hamburger"
-          aria-label="Toggle menu"
-          aria-expanded="false"
-          aria-controls="navLinks"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <div class="nav-tools">
+          <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode" aria-pressed="false">
+            <span data-li="sun" class="icon-sun"></span>
+            <span data-li="moon" class="icon-moon"></span>
+          </button>
+          <button
+            class="hamburger"
+            id="hamburger"
+            aria-label="Toggle menu"
+            aria-expanded="false"
+            aria-controls="navLinks"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </nav>
     </header>
 
     <main>
+      <svg class="svg-defs" aria-hidden="true" focusable="false">
+        <filter id="crumple" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="5" seed="9" result="noise" />
+          <feDiffuseLighting in="noise" lighting-color="#ffffff" surfaceScale="2.4" result="light">
+            <feDistantLight azimuth="40" elevation="58" />
+          </feDiffuseLighting>
+          <feBlend in="SourceGraphic" in2="light" mode="multiply" />
+        </filter>
+        <symbol id="kvnMark" viewBox="0 0 9 9"><path fill="currentColor" d="M1 0h2v1h-2zM6 0h2v1h-2zM1 1h1v1h-1zM5 1h2v1h-2zM1 2h2v1h-2zM4 2h2v1h-2zM1 3h4v1h-4zM1 4h4v1h-4zM1 5h2v1h-2zM4 5h2v1h-2zM1 6h2v1h-2zM5 6h2v1h-2zM1 7h2v1h-2zM6 7h2v1h-2zM1 8h1v1h-1zM7 8h1v1h-1z"/></symbol>
+      </svg>
       <!-- ================= HERO ================= -->
       <section class="hero" id="home">
         <div class="container hero-grid">
           <div class="hero-copy">
             <p class="status">
               <span class="dot"></span>
-              Open to junior roles &amp; mentorship
+              Open to IT &amp; junior developer roles
             </p>
             <h1 class="hero-title">
-              <span class="word">Hi,</span> <span class="word">I'm</span> <span class="word accent">Kevin.</span><br />
-              <span class="word">I</span> <span class="word">build</span> <span class="word">for</span> <span class="word">the</span> <span class="word">web.</span>
+              <span class="word">Learning</span> <span class="word">by</span> <span class="word accent">building,</span><br />
+              <span class="word accent">shipping</span> <span class="word">as</span> <span class="word">I</span> <span class="word">go.</span>
             </h1>
-            <p class="lede">
-              Web developer from Rizal, Philippines. I recently shipped
-              <a href="#projects" class="inline-link">Daywell</a>, a planner
-              built with Next.js, Supabase and Tailwind, and I'm just getting
-              started.
-            </p>
             <div class="hero-actions">
-              <a href="#projects" class="btn btn-primary">See my work</a>
-              <button type="button" class="btn btn-ghost" data-open-cv>
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
-                View CV
-              </button>
+              <a href="#projects" class="btn btn-primary">See my projects<span data-li="arrow-right" class="btn-icon"></span></a>
+              <a href="./assets/Kevin-Acebuche-CV.pdf" download="Kevin-Acebuche-CV.pdf" class="btn btn-ghost">
+                <span data-li="download" class="btn-icon"></span>
+                Download CV
+              </a>
             </div>
-            <ul class="hero-stack" aria-label="Tech I work with">
-              <li>TypeScript</li>
-              <li>React</li>
-              <li>Next.js</li>
-              <li>Supabase</li>
-              <li>Tailwind</li>
-            </ul>
           </div>
 
           <div class="hero-visual" id="heroVisual">
             <div class="blob-glow" aria-hidden="true"></div>
             <div class="blob-back" aria-hidden="true"></div>
             <div class="orbit" aria-hidden="true">
-              <span class="orbit-item" style="--a: 0deg"><img src="./assets/icons/react.svg" alt="" /></span>
+              <span class="orbit-item" style="--a: 0deg"><img src="./assets/icons/claude.svg" alt="" /></span>
               <span class="orbit-item" style="--a: 120deg"><img src="./assets/icons/nextdotjs.svg" alt="" /></span>
               <span class="orbit-item" style="--a: 240deg"><img src="./assets/icons/supabase.svg" alt="" /></span>
             </div>
@@ -100,8 +117,8 @@
                 fetchpriority="high"
               />
             </div>
-            <div class="float-tag tag-a">Fresh graduate</div>
-            <div class="float-tag tag-b">1 project shipped</div>
+            <div class="float-tag tag-a">Technical Support Rep · 6 mos</div>
+            <div class="float-tag tag-b">Built with AI, shipped live</div>
           </div>
         </div>
         <a href="#background" class="scroll-cue" aria-label="Scroll to the next section">
@@ -129,11 +146,11 @@
             <div class="deck-controls">
               <span class="deck-counter" id="deckCounter" aria-live="polite">1 / 8</span>
               <button type="button" class="deck-btn" id="deckPrev" aria-label="Previous card">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                <span data-li="chevron-left"></span>
               </button>
               <button type="button" class="deck-btn deck-btn-primary" id="deckNext" aria-label="Next card">
                 <span>Next</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                <span data-li="chevron-right"></span>
               </button>
             </div>
           </div>
@@ -143,17 +160,17 @@
             <li class="deck-card" data-index="0" aria-hidden="false">
               <img class="deck-img" src="./assets/background/education.jpg" alt="" loading="eager" />
               <div class="deck-glass">
-                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/><path d="M22 10v6"/></svg></div>
+                <div class="deck-icon"><span data-li="graduation-cap"></span></div>
                 <p class="deck-label">Education</p>
-                <h3>[Your degree, e.g. BS Information Technology]</h3>
-                <p class="deck-meta">[Your school] · Class of 2025</p>
-                <p class="deck-text">School gave me the fundamentals. Building real things after graduation is where it clicked.</p>
+                <h3>BS Electronics Engineering</h3>
+                <p class="deck-meta">University of Rizal System Morong · Class of 2025</p>
+                <p class="deck-text">Circuits and signal theory gave me the fundamentals. My thesis, an AI-based eggplant leaf disease detector on a Raspberry Pi, is where software won me over.</p>
               </div>
             </li>
             <li class="deck-card" data-index="1" aria-hidden="true">
               <img class="deck-img" src="./assets/background/passion.jpg" alt="" loading="eager" />
               <div class="deck-glass">
-                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg></div>
+                <div class="deck-icon"><span data-li="flame"></span></div>
                 <p class="deck-label">What drives me</p>
                 <h3>Tools that help people live their days on purpose.</h3>
                 <p class="deck-text">Calm design, readable code, products that make ordinary days better. Daywell started as a personal need: one place for work, studies, and my walk with God.</p>
@@ -162,7 +179,7 @@
             <li class="deck-card" data-index="2" aria-hidden="true">
               <img class="deck-img" src="./assets/background/leader.jpg" alt="" loading="lazy" />
               <div class="deck-glass">
-                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <div class="deck-icon"><span data-li="users"></span></div>
                 <p class="deck-label">Born to be a leader</p>
                 <h3>I step up when a group needs direction.</h3>
                 <p class="deck-text">In school projects I was usually the one setting the plan, splitting the work, and making sure everyone crossed the line together. I like owning outcomes, not just tasks.</p>
@@ -171,7 +188,7 @@
             <li class="deck-card" data-index="3" aria-hidden="true">
               <img class="deck-img" src="./assets/background/techy.jpg" alt="" loading="lazy" />
               <div class="deck-glass">
-                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="m9 8 2 2-2 2M13 12h3"/></svg></div>
+                <div class="deck-icon"><span data-li="monitor"></span></div>
                 <p class="deck-label">I love being techy</p>
                 <h3>New tools, new gadgets, new ways to build.</h3>
                 <p class="deck-text">I read changelogs for fun, try every new framework release, and take things apart to see how they work. Curiosity is the engine behind everything I ship.</p>
@@ -180,7 +197,7 @@
             <li class="deck-card" data-index="4" aria-hidden="true">
               <img class="deck-img" src="./assets/background/media.jpg" alt="" loading="lazy" />
               <div class="deck-glass">
-                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg></div>
+                <div class="deck-icon"><span data-li="camera"></span></div>
                 <p class="deck-label">Taking pictures &amp; video</p>
                 <h3>I see the frame before I press the shutter.</h3>
                 <p class="deck-text">Photos and video taught me composition, light and timing. It is the same eye I bring to a layout: what to show, what to leave out, where the attention should land.</p>
@@ -189,7 +206,7 @@
             <li class="deck-card" data-index="5" aria-hidden="true">
               <img class="deck-img" src="./assets/background/piano.jpg" alt="" loading="lazy" />
               <div class="deck-glass">
-                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v10M12 4v10M16 4v10"/><path d="M3 14h18"/></svg></div>
+                <div class="deck-icon"><span data-li="piano"></span></div>
                 <p class="deck-label">Off the keyboard, on the keys</p>
                 <h3>I play piano.</h3>
                 <p class="deck-text">Music taught me patience and repetition long before code did. Practicing a piece until it flows is the same discipline as refactoring until it reads clean.</p>
@@ -198,7 +215,7 @@
             <li class="deck-card" data-index="6" aria-hidden="true">
               <img class="deck-img" src="./assets/background/design.jpg" alt="" loading="lazy" />
               <div class="deck-glass">
-                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+                <div class="deck-icon"><span data-li="pen-tool"></span></div>
                 <p class="deck-label">The part I enjoy most</p>
                 <h3>I love design.</h3>
                 <p class="deck-text">Typography, spacing, color. I sketch the interface before I write a line of code, and I care how the empty state looks as much as the happy path.</p>
@@ -207,7 +224,7 @@
             <li class="deck-card" data-index="7" aria-hidden="true">
               <img class="deck-img" src="./assets/background/faith.jpg" alt="" loading="lazy" />
               <div class="deck-glass">
-                <div class="deck-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M12 6v8M9 9h6"/></svg></div>
+                <div class="deck-icon"><span data-li="book-open"></span></div>
                 <p class="deck-label">Faith &amp; focus</p>
                 <h3>Consistency over intensity.</h3>
                 <p class="deck-text">A verse in the morning, one clear list for the day, and the discipline to show up again tomorrow. That rhythm is why Daywell exists.</p>
@@ -224,47 +241,60 @@
       <section class="about section" id="about">
         <div class="container about-grid">
           <div class="section-heading">
-            <h2>Starting out, and taking it seriously.</h2>
+            <h2>Engineer by degree. Developer in the making.</h2>
             <button type="button" class="btn btn-ghost about-cv" data-open-cv>
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
+              <span data-li="file-text" class="btn-icon"></span>
               Read my CV
             </button>
           </div>
           <div class="about-body">
             <p>
-              I'm <strong>Kevin Acebuche</strong>, a web developer fueled by
-              passion, creativity, and the determination to grow in an industry
-              that never stands still.
+              I'm <strong>Kevin Acebuche</strong>, an Electronics Engineering
+              graduate from Teresa, Rizal. I'm not an AI automation specialist
+              yet, and I won't pretend to be one. I'm an engineer working my
+              way into the IT industry, aiming to become a developer, and this
+              page is the honest record of that journey so far.
             </p>
             <p>
-              I started with HTML, CSS and JavaScript, then pushed straight into
-              a full-stack project. Daywell taught me TypeScript, React and
-              Next.js, how to model data in Postgres with Supabase, how to
-              protect it with row-level security, and how to test what I ship.
+              It started with my thesis: an AI-based eggplant leaf disease
+              detector built on Roboflow and a Raspberry Pi. That was the first
+              time I saw code solve a real problem, and I wanted more of it.
+              After graduating in 2025 I took an engineering internship, then
+              trained in CRM and workflow automation with GoHighLevel and
+              ActiveCampaign, and spent six months as a Technical Support
+              Representative on a medical healthcare account, diagnosing
+              issues, finding root causes and documenting every fix.
             </p>
             <p>
-              I love crafting designs and experimenting with creative ideas. My
-              eye for design, curiosity, and willingness to take risks are what
-              I'm betting on. The plan is simple: keep building, keep learning,
-              and show up every day.
+              On my own time I taught myself HTML, CSS, JavaScript and SQL,
+              then picked up Claude Code as a pair programmer and started
+              shipping: <a href="#projects" class="inline-link">Daywell</a>, a
+              full-stack planner, Exalting AGHAM, and this site. I read every
+              line, test what I build, and own the result.
+            </p>
+            <p>
+              What I bring today is a troubleshooter's patience, a habit of
+              documenting as I go, and a real appetite to learn.
+              <strong>Give me a problem and a codebase, and I'll show up every
+              day until it works.</strong>
             </p>
 
             <dl class="facts">
               <div>
                 <dt>Based in</dt>
-                <dd>Rizal, PH</dd>
+                <dd>Teresa, Rizal, PH</dd>
               </div>
               <div>
-                <dt>Focus</dt>
-                <dd>Full-stack web</dd>
+                <dt>Degree</dt>
+                <dd>BS Electronics Engineering</dd>
               </div>
               <div>
-                <dt>Shipped</dt>
-                <dd>Daywell</dd>
+                <dt>Latest role</dt>
+                <dd>Technical Support Representative</dd>
               </div>
               <div>
                 <dt>Status</dt>
-                <dd>Open to work</dd>
+                <dd>Open to IT roles</dd>
               </div>
             </dl>
           </div>
@@ -276,130 +306,59 @@
         <div class="container">
           <div class="section-heading center">
             <h2>Things I've built</h2>
-            <p class="sub">Real, deployed, and used every day.</p>
+            <p class="sub">Three crumpled notes from my desk. Tap one to smooth it out and see the app.</p>
           </div>
 
-          <!-- Featured: Daywell -->
-          <article class="project featured">
-            <div class="project-preview">
-              <div class="browser">
-                <div class="browser-bar">
-                  <span></span><span></span><span></span>
-                  <div class="browser-url">daywell-project.vercel.app</div>
-                </div>
-                <a
-                  href="https://daywell-project.vercel.app"
-                  target="_blank"
-                  rel="noopener"
-                  class="browser-screen"
-                  aria-label="Open Daywell live site"
-                >
-                  <img
-                    src="./assets/daywell-preview.jpg"
-                    alt="Daywell login screen with its sun mascot"
-                    loading="lazy"
-                    width="1200"
-                    height="750"
-                  />
-                </a>
-              </div>
-            </div>
+          <div class="paper-pile" role="tablist" aria-label="Projects">
+            <button type="button" class="paper" role="tab" id="paperTab-daywell" data-project="daywell" aria-selected="true" aria-controls="projectDetail" style="--tilt: -2.5deg; --seed: 0">
+              <span class="paper-sheet" aria-hidden="true"></span>
+              <span class="paper-crumple" aria-hidden="true"></span>
+              <span class="paper-tape" aria-hidden="true"></span>
+              <span class="paper-inner">
+                <span class="paper-logo" aria-hidden="true"><img src="./assets/daywell-icon.png" alt="" width="40" height="40" /></span>
+                <span class="paper-kicker">01 · Web app</span>
+                <span class="paper-title">Daywell</span>
+                <span class="paper-note">A planner for work, studies and your walk with God.</span>
+                <span class="paper-hint"><span class="hint-closed">Tap to unfold</span><span class="hint-open">Unfolded</span></span>
+              </span>
+            </button>
+            <button type="button" class="paper" role="tab" id="paperTab-setlist" data-project="setlist" aria-selected="false" aria-controls="projectDetail" tabindex="-1" style="--tilt: 1.8deg; --seed: 1">
+              <span class="paper-sheet" aria-hidden="true"></span>
+              <span class="paper-crumple" aria-hidden="true"></span>
+              <span class="paper-tape" aria-hidden="true"></span>
+              <span class="paper-inner">
+                <span class="paper-logo" aria-hidden="true"><img src="./assets/exalting-agham.png" alt="" width="40" height="40" /></span>
+                <span class="paper-kicker">02 · Web app</span>
+                <span class="paper-title">Exalting AGHAM</span>
+                <span class="paper-note">Lineups, chords and lyrics for a worship team.</span>
+                <span class="paper-hint"><span class="hint-closed">Tap to unfold</span><span class="hint-open">Unfolded</span></span>
+              </span>
+            </button>
+            <button type="button" class="paper" role="tab" id="paperTab-portfolio" data-project="portfolio" aria-selected="false" aria-controls="projectDetail" tabindex="-1" style="--tilt: -1.2deg; --seed: 2">
+              <span class="paper-sheet" aria-hidden="true"></span>
+              <span class="paper-crumple" aria-hidden="true"></span>
+              <span class="paper-tape" aria-hidden="true"></span>
+              <span class="paper-inner">
+                <span class="paper-logo mark" aria-hidden="true"><svg viewBox="0 0 9 9" shape-rendering="crispEdges"><use href="#kvnMark"/></svg></span>
+                <span class="paper-kicker">03 · Website</span>
+                <span class="paper-title">This portfolio</span>
+                <span class="paper-note">Hand-built with AI, no framework, on GitHub Pages.</span>
+                <span class="paper-hint"><span class="hint-closed">Tap to unfold</span><span class="hint-open">Unfolded</span></span>
+              </span>
+            </button>
+          </div>
 
-            <div class="project-body">
-              <div class="project-head">
-                <img src="./assets/daywell-icon.png" alt="" width="44" height="44" class="project-logo" />
-                <div>
-                  <h3>Daywell</h3>
-                  <p class="project-tagline">A planner for work, studies, and your walk with God.</p>
-                </div>
-                <span class="live-pill"><span class="dot"></span>Live</span>
-              </div>
-
-              <p class="project-desc">
-                Full-stack daily planner: auth, tasks that repeat on their own,
-                a focus timer, a calendar, a verse of the day, and daily
-                progress. I built the whole thing, from the Postgres schema and
-                row-level security to the shadcn design system and the test
-                suite.
-              </p>
-
-              <div class="project-cols">
-                <div>
-                  <h4>What it does</h4>
-                  <ul class="project-features">
-                    <li>Supabase Auth with email confirmation</li>
-                    <li>Repeating tasks with a focus countdown</li>
-                    <li>Calendar with events and an upcoming list</li>
-                    <li>Verse of the day, rotating by day of year</li>
-                    <li>Row-level security per user</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>How it's built</h4>
-                  <ul class="project-features">
-                    <li>Next.js 16 App Router + server actions</li>
-                    <li>TypeScript, React 19, TanStack Query</li>
-                    <li>Tailwind v4 + shadcn/ui</li>
-                    <li>react-hook-form + zod validation</li>
-                    <li>Vitest unit tests, Playwright E2E</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="project-actions">
-                <a href="https://daywell-project.vercel.app" target="_blank" rel="noopener" class="btn btn-primary">
-                  Open live site
-                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
-                </a>
-                <a href="https://github.com/KvnDvlpr" target="_blank" rel="noopener" class="btn btn-ghost">
-                  <img src="./assets/icons/github.svg" alt="" class="btn-icon" />
-                  Source
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Secondary: this portfolio -->
-          <article class="project compact">
-            <div class="project-body">
-              <div class="project-head">
-                <span class="project-logo mark">K</span>
-                <div>
-                  <h3>This portfolio</h3>
-                  <p class="project-tagline">Hand-built, no framework, deployed on GitHub Pages.</p>
-                </div>
-                <span class="live-pill"><span class="dot"></span>Live</span>
-              </div>
-              <p class="project-desc">
-                Semantic HTML, a small token-based CSS system, and vanilla
-                JavaScript for the card deck, the skills explorer, the CV
-                viewer, and the contact form. No build step, loads in under a
-                second.
-              </p>
-              <ul class="chips" aria-label="Tech stack">
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>GitHub Pages</li>
-              </ul>
-              <div class="project-actions">
-                <a href="https://github.com/KvnDvlpr/MyPortfolio2025" target="_blank" rel="noopener" class="btn btn-ghost">
-                  <img src="./assets/icons/github.svg" alt="" class="btn-icon" />
-                  Source
-                </a>
-              </div>
-            </div>
-          </article>
+          <article class="project-detail" id="projectDetail" role="tabpanel" aria-labelledby="paperTab-daywell" aria-live="polite"></article>
         </div>
       </section>
 
-      <!-- ================= TECH STACK ================= -->
+      <!-- ================= TECHNOLOGIES ================= -->
       <section class="stack section" id="stack">
         <div class="container">
           <div class="section-heading center">
-            <h2>What I've actually used</h2>
+            <h2>Technologies I've actually used</h2>
             <p class="sub">
-              Hover over a logo, or tap it on a phone, to see when I picked it up and what I built with it.
+              One tool does most of the building. Hover or tap the rest to see when I picked each one up and what I built with it. Below that: the platforms I ran day to day in technical and automation roles.
             </p>
           </div>
 
@@ -409,6 +368,38 @@
               <span class="skill-pop-arrow" aria-hidden="true"></span>
               <div class="skill-pop-body" id="skillPopBody"></div>
             </div>
+          </div>
+
+          <article class="claude-card" aria-labelledby="claudeTitle">
+            <span class="claude-spark" aria-hidden="true"><span data-li="sparkles"></span></span>
+            <div class="claude-badge">
+              <span class="claude-logo"><img src="./assets/icons/claude-code.svg" alt="" width="96" height="60" /></span>
+              <span class="claude-badge-label">Daily driver</span>
+              <span class="claude-badge-name">Claude Code</span>
+            </div>
+            <div class="claude-body">
+              <p class="claude-pill"><span data-li="sparkles"></span>AI workflows · daily practitioner</p>
+              <h3 id="claudeTitle">AI-fluent builder. Claude Code is the loop.</h3>
+              <p class="claude-note">
+                Claude Code runs in my daily loop as an agentic pair-programmer: scaffolding, refactors, tests and the boring 80%, so my judgment goes into the 20% that matters. I describe the feature and its edge cases, it writes the code, and I read every diff before it ships. Daywell, Exalting AGHAM and this site were all built this way.
+              </p>
+              <div class="claude-ai" aria-label="Other AI platforms I use">
+                <span class="claude-ai-label">Also in the toolbox</span>
+                <ul class="ai-chips">
+                  <li class="ai-chip"><span class="ai-ico"><img src="./assets/icons/openai.svg" alt="" width="14" height="14" /></span>ChatGPT</li>
+                  <li class="ai-chip"><span class="ai-ico"><img src="./assets/icons/grok.svg" alt="" width="14" height="14" /></span>Grok</li>
+                  <li class="ai-chip"><span class="ai-ico"><img src="./assets/icons/code.svg" alt="" width="14" height="14" /></span>OpenAI API</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <div class="tools" id="tools" aria-labelledby="toolsTitle">
+            <div class="tools-head">
+              <h3 id="toolsTitle">Tools I've worked with</h3>
+              <p>CRM, automation, support and productivity platforms from technical and automation work. No ratings here, just the things I have actually run.</p>
+            </div>
+            <div class="tools-groups" id="toolsGroups"></div>
           </div>
         </div>
       </section>
@@ -422,24 +413,38 @@
               Send me a message about anything you saw here. I read everything
               and reply to everyone.
             </p>
-            <ul class="contact-list">
+            <ul class="contact-links">
               <li>
-                <span class="label">Email</span>
-                <a href="mailto:kvncrlacebuche@gmail.com">kvncrlacebuche@gmail.com</a>
+                <a class="contact-link" href="mailto:kvncrlacebuche@gmail.com">
+                  <span class="contact-ico"><span data-li="mail"></span></span>
+                  <span class="contact-text"><span class="label">Email</span><span class="value">kvncrlacebuche@gmail.com</span></span>
+                  <span data-li="arrow-up-right" class="contact-go"></span>
+                </a>
               </li>
               <li>
-                <span class="label">Phone</span>
-                <a href="tel:+63931955464">+63 931 955 464</a>
+                <a class="contact-link" href="tel:+639361955464">
+                  <span class="contact-ico"><span data-li="phone"></span></span>
+                  <span class="contact-text"><span class="label">Phone</span><span class="value">+63 936 195 5464</span></span>
+                  <span data-li="arrow-up-right" class="contact-go"></span>
+                </a>
               </li>
               <li>
-                <span class="label">Location</span>
-                <span>Rizal, Philippines</span>
-              </li>
-              <li>
-                <span class="label">GitHub</span>
-                <a href="https://github.com/KvnDvlpr" target="_blank" rel="noopener">github.com/KvnDvlpr</a>
+                <a class="contact-link" href="https://www.google.com/maps/place/Rizal,+Philippines" target="_blank" rel="noopener">
+                  <span class="contact-ico"><span data-li="map-pin"></span></span>
+                  <span class="contact-text"><span class="label">Location</span><span class="value">Rizal, Philippines</span></span>
+                  <span data-li="arrow-up-right" class="contact-go"></span>
+                </a>
               </li>
             </ul>
+
+            <div class="socials">
+              <p class="socials-label">Find me on</p>
+              <ul class="social-row">
+                <li><a class="social-btn" href="https://github.com/KvnDvlpr" target="_blank" rel="noopener"><span data-li="github"></span>GitHub</a></li>
+                <li><a class="social-btn is-placeholder" href="#contact" aria-disabled="true" title="Add your LinkedIn URL"><span data-li="linkedin"></span>LinkedIn</a></li>
+                <li><a class="social-btn is-placeholder" href="#contact" aria-disabled="true" title="Add your Facebook URL"><span data-li="facebook"></span>Facebook</a></li>
+              </ul>
+            </div>
           </div>
 
           <form class="contact-form" id="contactForm" novalidate>
@@ -452,20 +457,10 @@
               <input id="cf-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
             </div>
             <div class="field">
-              <label for="cf-topic">What is this about?</label>
-              <select id="cf-topic" name="topic">
-                <option>Daywell feedback</option>
-                <option>Job or internship opportunity</option>
-                <option>Collaboration</option>
-                <option>Advice / mentorship</option>
-                <option>Something else</option>
-              </select>
-            </div>
-            <div class="field">
               <label for="cf-message">Message</label>
               <textarea id="cf-message" name="message" rows="5" required placeholder="Hi Kevin, I saw Daywell and..."></textarea>
             </div>
-            <button type="submit" class="btn btn-light btn-block">Send email</button>
+            <button type="submit" class="btn btn-light btn-block">Send email<span data-li="send" class="btn-icon"></span></button>
             <p class="form-note" id="formNote">
               This opens your email app with the message pre-filled.
             </p>
@@ -476,8 +471,8 @@
 
     <footer class="site-footer">
       <div class="container footer-row">
-        <p>&copy; <span id="year"></span> Kevin Acebuche. Built by hand with HTML, CSS and JS.</p>
-        <a href="#home" class="back-top">Back to top</a>
+        <p>&copy; <span id="year"></span> All rights reserved | <a href="#home" class="footer-brand">kvndvlpr</a></p>
+        <a href="#home" class="back-top">Back to top<span data-li="arrow-up"></span></a>
       </div>
     </footer>
 
@@ -491,11 +486,11 @@
           </div>
           <div class="cv-bar-actions">
             <a href="./assets/Kevin-Acebuche-CV.pdf" download="Kevin-Acebuche-CV.pdf" class="btn btn-primary btn-sm" id="cvDownload">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+              <span data-li="download" class="btn-icon"></span>
               Download PDF
             </a>
             <button type="button" class="icon-btn" id="cvClose" aria-label="Close CV">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+              <span data-li="x"></span>
             </button>
           </div>
         </header>
@@ -504,11 +499,69 @@
         </div>
         <footer class="cv-foot">
           <span>PDF · A4 · 1 page</span>
-          <a href="./assets/Kevin-Acebuche-CV.pdf" download="Kevin-Acebuche-CV.pdf" class="btn btn-light btn-sm">Download PDF</a>
+          <a href="./assets/Kevin-Acebuche-CV.pdf" download="Kevin-Acebuche-CV.pdf" class="btn btn-light btn-sm"><span data-li="download" class="btn-icon"></span>Download PDF</a>
         </footer>
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- App preview (peek inside a live project) -->
+    <div class="gallery-modal" id="galleryModal" role="dialog" aria-modal="true" aria-labelledby="galleryTitle" aria-hidden="true">
+      <div class="gallery-panel">
+        <div class="gallery-stage">
+          <span class="gallery-count"><b id="galleryIndex">01</b> / <span id="galleryTotal">01</span></span>
+          <button type="button" class="gallery-close" id="galleryClose" aria-label="Close"><span data-li="x"></span></button>
+          <button type="button" class="gallery-nav prev" id="galleryPrev" aria-label="Previous screenshot"><span data-li="chevron-left"></span></button>
+          <div class="gallery-track" id="galleryTrack"></div>
+          <button type="button" class="gallery-nav next" id="galleryNext" aria-label="Next screenshot"><span data-li="chevron-right"></span></button>
+          <div class="gallery-dots" id="galleryDots" role="tablist" aria-label="Screenshots"></div>
+        </div>
+        <div class="gallery-info" id="galleryInfo"></div>
+      </div>
+    </div>
+
+    <div class="cv-modal app-modal" id="appModal" role="dialog" aria-modal="true" aria-labelledby="appTitle" aria-hidden="true">
+      <div class="cv-panel app-panel">
+        <header class="cv-bar">
+          <div>
+            <h2 id="appTitle">Daywell<span class="cv-name"> · live preview</span></h2>
+            <p id="appUrl">daywell-project.vercel.app</p>
+          </div>
+          <div class="cv-bar-actions">
+            <div class="device-toggle" role="group" aria-label="Preview size">
+              <button type="button" class="device-btn is-active" data-device="desktop" aria-pressed="true">
+                <span data-li="monitor"></span>
+                Desktop
+              </button>
+              <button type="button" class="device-btn" data-device="phone" aria-pressed="false">
+                <span data-li="smartphone"></span>
+                Phone
+              </button>
+            </div>
+            <a href="#" id="appOpen" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+              Open live site
+              <span data-li="arrow-up-right" class="btn-icon"></span>
+            </a>
+            <button type="button" class="icon-btn" id="appClose" aria-label="Close preview">
+              <span data-li="x"></span>
+            </button>
+          </div>
+        </header>
+        <div class="app-stage">
+          <div class="device desktop" id="appDevice">
+            <iframe id="appFrame" title="Live app preview"></iframe>
+            <div class="app-loading" id="appLoading">
+              <span class="spinner" aria-hidden="true"></span>
+              <span id="appLoadingText">Loading the live app…</span>
+            </div>
+          </div>
+        </div>
+        <footer class="cv-foot">
+          <span>This is the real app, embedded. Click around; nothing here is a screenshot.</span>
+          <a href="#" id="appOpen2" target="_blank" rel="noopener" class="btn btn-light btn-sm">Open in new tab<span data-li="arrow-up-right" class="btn-icon"></span></a>
+        </footer>
+      </div>
+    </div>
+
+    <script src="script.js?v=20260924l"></script>
   </body>
 </html>
