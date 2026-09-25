@@ -1,0 +1,298 @@
+/* ------------------------------------------------------------
+   Projects — crumpled paper notes, the detail panel, and the
+   gallery / live-preview dialogs. Static paper styling lives
+   here; every animation is Framer Motion in the TSX (the note
+   outlines are tweened as clip-path polygons in paper-note.tsx).
+------------------------------------------------------------ */
+
+/* ---------- paper pile ---------- */
+.paper-pile {
+  /* glass tile tokens — light: subtle and warm */
+  --tile-fill: rgba(255, 252, 245, 0.42);
+  --tile-highlight: rgba(255, 255, 255, 0.85);
+  --tile-edge-a: rgba(255, 255, 255, 0.95);
+  --tile-edge-b: rgba(111, 143, 94, 0.45);
+  --tile-ring-a: rgba(111, 143, 94, 0.95);
+  --tile-ring-b: rgba(201, 132, 70, 0.75);
+  --tile-glow-a: rgba(170, 200, 145, 0.8);
+  --tile-glow-b: rgba(224, 170, 112, 0.65);
+  --tile-shadow: rgba(66, 27, 0, 0.12);
+
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  padding: 0.75rem 0 1.5rem;
+  margin-bottom: 1.5rem;
+}
+[data-theme="dark"] .paper-pile {
+  /* dark: stronger, cooler light */
+  --tile-fill: rgba(255, 244, 228, 0.045);
+  --tile-highlight: rgba(255, 255, 255, 0.14);
+  --tile-edge-a: rgba(255, 255, 255, 0.3);
+  --tile-edge-b: rgba(147, 176, 127, 0.4);
+  --tile-ring-a: rgba(181, 222, 170, 1);
+  --tile-ring-b: rgba(130, 200, 190, 0.85);
+  --tile-glow-a: rgba(147, 196, 127, 0.55);
+  --tile-glow-b: rgba(96, 178, 170, 0.45);
+  --tile-shadow: rgba(0, 0, 0, 0.45);
+}
+/* colour for the glass to frost: soft sage + clay light behind the pile */
+.paper-pile::before {
+  content: "";
+  position: absolute;
+  inset: -8% -4%;
+  z-index: -1;
+  background:
+    radial-gradient(40% 60% at 18% 50%, var(--tile-glow-a), transparent 70%),
+    radial-gradient(38% 60% at 82% 45%, var(--tile-glow-b), transparent 70%);
+  opacity: 0.35;
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+/* ---------- glass tile around each note ---------- */
+.paper-tile {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: 100%;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border-radius: 26px;
+  text-align: left;
+  -webkit-tap-highlight-color: transparent;
+}
+.paper-tile:focus-visible {
+  outline: 2px solid var(--sage);
+  outline-offset: 4px;
+}
+/* frosted pane */
+.paper-tile-glass {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(160deg, var(--tile-highlight), transparent 38%), var(--tile-fill);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  box-shadow:
+    inset 0 1px 0 var(--tile-highlight),
+    0 18px 40px -24px var(--tile-shadow);
+}
+/* hairline gradient edge, drawn as a masked border */
+.paper-tile-glass::before,
+.paper-tile-ring {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+.paper-tile-glass::before {
+  background: linear-gradient(140deg, var(--tile-edge-a), transparent 42%, transparent 62%, var(--tile-edge-b));
+}
+/* luminous ring: lit on hover / open (opacity driven by motion) */
+.paper-tile-ring {
+  z-index: 1;
+  padding: 1.5px;
+  background: linear-gradient(135deg, var(--tile-ring-a), transparent 45%, transparent 55%, var(--tile-ring-b));
+}
+/* the aura: an offset-free soft light behind the tile (opacity by motion) */
+.paper-tile-glow {
+  position: absolute;
+  inset: 6px;
+  z-index: -2;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--tile-glow-a), var(--tile-glow-b));
+  filter: blur(26px);
+  pointer-events: none;
+}
+@media (width >= 40.0625rem) {
+  .paper-pile {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1rem, 2.5vw, 2rem);
+  }
+  .paper-pile .paper-tile:last-child {
+    grid-column: 1 / -1;
+  }
+}
+@media (width >= 60.0625rem) {
+  .paper-pile {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .paper-pile .paper-tile:last-child {
+    grid-column: auto;
+  }
+}
+
+.paper {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 160px;
+  padding: 0;
+  text-align: left;
+  color: var(--paper-ink);
+  filter: drop-shadow(0 16px 22px var(--paper-shadow));
+  /* motion owns transform; only the shadow eases here */
+  transition: filter 0.4s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (width >= 40.0625rem) {
+  .paper {
+    min-height: 230px;
+  }
+}
+.paper-tile[aria-expanded="true"] .paper {
+  filter: drop-shadow(0 24px 30px var(--paper-shadow));
+}
+
+.paper-sheet,
+.paper-crumple {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+}
+/* the crumpled skin: paper colour lit through the SVG turbulence filter */
+.paper-crumple {
+  filter: url(#crumple);
+  background-image:
+    linear-gradient(112deg, transparent 38%, var(--crease-dark) 39%, transparent 40.5%),
+    linear-gradient(-28deg, transparent 61%, var(--crease-dark) 62%, transparent 63.5%),
+    linear-gradient(74deg, transparent 22%, var(--crease-light) 23%, transparent 24%),
+    linear-gradient(156deg, transparent 12%, var(--crease-dark) 13%, transparent 14.5%),
+    linear-gradient(-64deg, transparent 80%, var(--crease-dark) 81%, transparent 82.5%),
+    linear-gradient(18deg, transparent 47%, var(--crease-light) 48%, transparent 49%);
+}
+.paper-tape {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  z-index: 2;
+  width: 84px;
+  height: 24px;
+  margin-left: -42px;
+  background: var(--tape);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  transform: rotate(calc(-3deg + var(--seed, 0) * 2.5deg));
+  backdrop-filter: blur(1px);
+}
+
+.paper-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-height: 160px;
+  padding: clamp(1.4rem, 2.6vw, 1.9rem) clamp(1.25rem, 2.4vw, 1.75rem) clamp(1.1rem, 2vw, 1.4rem);
+}
+@media (width >= 40.0625rem) {
+  .paper-inner {
+    min-height: 230px;
+  }
+  .paper-pile .paper-tile:last-child .paper-inner {
+    min-height: 170px;
+  }
+}
+@media (width >= 60.0625rem) {
+  .paper-pile .paper-tile:last-child .paper-inner {
+    min-height: 230px;
+  }
+}
+
+.paper-logo {
+  position: absolute;
+  top: clamp(1.1rem, 2.2vw, 1.5rem);
+  right: clamp(1.1rem, 2.2vw, 1.5rem);
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+.paper-logo img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+.paper-logo.is-mark {
+  background: var(--brand);
+  color: var(--on-brand);
+  box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.45);
+}
+
+.paper-note {
+  max-width: none;
+}
+@media (width >= 60.0625rem) {
+  .paper-note {
+    max-width: 26ch;
+  }
+}
+@media (width >= 40.0625rem) and (width < 60.0625rem) {
+  .paper-pile .paper-tile:not(:last-child) .paper-note {
+    max-width: 26ch;
+  }
+}
+
+.paper-hint::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: currentColor;
+}
+.paper-tile[aria-expanded="true"] .paper-hint {
+  opacity: 1;
+  color: var(--sage-ink);
+}
+
+/* ---------- detail panel ---------- */
+/* big logo tile, like a product card */
+.project-hero {
+  background: radial-gradient(120% 90% at 20% 0%, rgba(255, 255, 255, 0.7), transparent 60%), var(--hero-bg, #f4ecd6);
+}
+.project-hero-logo {
+  filter: drop-shadow(0 22px 30px rgba(43, 26, 15, 0.22));
+}
+.project-hero-mark {
+  filter: drop-shadow(0 22px 30px rgba(43, 26, 15, 0.25));
+}
+
+.project-features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--sage);
+  transform: rotate(45deg);
+}
+
+/* "See more" round arrow: motion nudges it, the colour eases here */
+.project-more-arrow {
+  transition: background-color 0.25s ease;
+}
+
+/* ---------- gallery ---------- */
+.gallery-slide img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.gallery-info {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}

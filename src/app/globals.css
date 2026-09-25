@@ -1,0 +1,311 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "../styles/hero.css";
+@import "../styles/background.css";
+@import "../styles/about.css";
+@import "../styles/projects.css";
+@import "../styles/technologies.css";
+@import "../styles/contact.css";
+@import "../styles/cv.css";
+@import "../styles/sketch.css";
+
+/* Theme is switched by next-themes via <html data-theme="light|dark">,
+   the same attribute and localStorage key ("theme") the legacy site used. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------------------------------------
+   Tailwind theme — exposes the tokens below as utilities
+------------------------------------------------------------ */
+@theme inline {
+  /* shadcn semantic colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* portfolio palette (legacy token names, kebab-cased) */
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-bg-3: var(--bg-3);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-brand: var(--brand);
+  --color-brand-2: var(--brand-2);
+  --color-brand-deep: var(--brand-deep);
+  --color-on-brand: var(--on-brand);
+  --color-sage: var(--sage);
+  --color-sage-2: var(--sage-2);
+  --color-sage-soft: var(--sage-soft);
+  --color-sage-ink: var(--sage-ink);
+  --color-ok: var(--ok);
+  --color-ok-ink: var(--ok-ink);
+  --color-glass: var(--glass);
+  --color-glass-line: var(--glass-line);
+  --color-glass-strong: var(--glass-strong);
+  --color-paper: var(--paper);
+  --color-paper-ink: var(--paper-ink);
+
+  /* type */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-sora), system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  /* shape, depth, motion, layout */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --radius-card: 18px;
+  --radius-tile: 10px;
+  --shadow-soft-sm: var(--shadow-soft-sm);
+  --shadow-soft-md: var(--shadow-soft-md);
+  --shadow-soft-lg: var(--shadow-soft-lg);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --container-page: 1120px;
+  --spacing-header: 72px;
+  --breakpoint-nav: 56.25rem; /* 900px — where the desktop nav appears */
+}
+
+/* ------------------------------------------------------------
+   Light
+------------------------------------------------------------ */
+:root {
+  /* palette */
+  --bg: #f7f2e9;
+  --bg-2: #fbf8f2;
+  --bg-3: #e8e4d3;
+  --surface: #ffffff;
+  --ink: #2b1a0f;
+  --ink-2: #5a4636;
+  --ink-3: #7a6353;
+  --line: rgba(66, 27, 0, 0.1);
+  --line-strong: rgba(66, 27, 0, 0.18);
+  --brand: #421b00;
+  --brand-2: #6b3410;
+  --brand-deep: #421b00; /* fixed-dark surfaces (contact, cv footer) */
+  --on-brand: #ffffff;
+  --sage: #6f8f5e;
+  --sage-2: #b8cda3;
+  --sage-soft: rgba(111, 143, 94, 0.16);
+  --sage-ink: #4b6b3f;
+  --ok: #2fb47c;
+  --ok-ink: #1f7a54;
+
+  /* effects */
+  --header-bg: rgba(247, 242, 233, 0.7);
+  --header-bg-solid: rgba(247, 242, 233, 0.88);
+  --menu-bg: rgba(247, 242, 233, 0.98);
+  --glass: rgba(255, 255, 255, 0.55);
+  --glass-line: rgba(255, 255, 255, 0.85);
+  --glass-strong: rgba(255, 255, 255, 0.85);
+  --mock-bg: radial-gradient(120% 110% at 0% 0%, #efe4d2 0%, #ddd2ba 42%, #c8cbb0 78%, #b7c0a4 100%);
+  --blob-opacity: 0.75;
+  --paper: #f9f3e6;
+  --paper-ink: #2b1a0f;
+  --paper-shadow: rgba(43, 26, 15, 0.22);
+  --tape: rgba(255, 222, 150, 0.55);
+  --crease-dark: rgba(0, 0, 0, 0.07);
+  --crease-light: rgba(255, 255, 255, 0.35);
+  --shadow-soft-sm: 0 1px 2px rgba(43, 26, 15, 0.06), 0 4px 12px rgba(43, 26, 15, 0.05);
+  --shadow-soft-md: 0 8px 24px rgba(43, 26, 15, 0.1);
+  --shadow-soft-lg: 0 30px 60px -20px rgba(66, 27, 0, 0.35);
+
+  /* shadcn semantic mapping */
+  --background: var(--bg);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--brand);
+  --primary-foreground: var(--on-brand);
+  --secondary: var(--bg-3);
+  --secondary-foreground: var(--ink);
+  --muted: var(--bg-2);
+  --muted-foreground: var(--ink-3);
+  --accent: var(--sage-soft);
+  --accent-foreground: var(--sage-ink);
+  --destructive: #c2410c;
+  --border: var(--line);
+  --input: var(--line-strong);
+  --ring: var(--sage);
+  --chart-1: var(--brand);
+  --chart-2: var(--sage);
+  --chart-3: var(--brand-2);
+  --chart-4: var(--sage-2);
+  --chart-5: var(--ink-3);
+  --radius: 0.75rem;
+  --sidebar: var(--bg-2);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: var(--on-brand);
+  --sidebar-accent: var(--sage-soft);
+  --sidebar-accent-foreground: var(--sage-ink);
+  --sidebar-border: var(--line);
+  --sidebar-ring: var(--sage);
+
+  color-scheme: light;
+}
+
+/* ------------------------------------------------------------
+   Dark — only the palette changes; the semantic mapping follows
+------------------------------------------------------------ */
+[data-theme="dark"] {
+  --bg: #16100b;
+  --bg-2: #1e1610;
+  --bg-3: #1c1f18;
+  --surface: #251c14;
+  --ink: #f5ede3;
+  --ink-2: #cfc0af;
+  --ink-3: #a3917e;
+  --line: rgba(255, 230, 205, 0.1);
+  --line-strong: rgba(255, 230, 205, 0.2);
+  --brand: #d9b990;
+  --brand-2: #e6cba8;
+  --on-brand: #2b1a0f;
+  --sage: #93b07f;
+  --sage-2: #b8cda3;
+  --sage-soft: rgba(147, 176, 127, 0.18);
+  --sage-ink: #b5cf9f;
+  --ok: #3fc98b;
+  --ok-ink: #8fe0b8;
+
+  --header-bg: rgba(22, 16, 11, 0.7);
+  --header-bg-solid: rgba(22, 16, 11, 0.9);
+  --menu-bg: rgba(22, 16, 11, 0.98);
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-line: rgba(255, 255, 255, 0.16);
+  --glass-strong: rgba(255, 255, 255, 0.16);
+  --mock-bg: radial-gradient(120% 110% at 0% 0%, #3a2c1f 0%, #2e271c 45%, #25291f 80%, #1f261c 100%);
+  --blob-opacity: 0.32;
+  --paper: #33271c;
+  --paper-ink: #f5ede3;
+  --paper-shadow: rgba(0, 0, 0, 0.55);
+  --tape: rgba(255, 210, 140, 0.28);
+  --crease-dark: rgba(0, 0, 0, 0.22);
+  --crease-light: rgba(255, 255, 255, 0.06);
+  --shadow-soft-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-soft-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-soft-lg: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+
+  --destructive: #f97316;
+
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--spacing-header);
+  }
+  body {
+    @apply bg-background text-foreground;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 {
+    @apply font-heading;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  h2 {
+    font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+  h4 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  ::selection {
+    background: var(--sage-2);
+    color: var(--brand-deep);
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--sage) transparent;
+  }
+  /* black brand glyphs vanish on dark tiles, so flip them */
+  [data-theme="dark"] :is(img[src$="/github.svg"], img[src$="/linux.svg"], img[src$="/nextdotjs.svg"], img[src$="/openai.svg"], img[src$="/vercel.svg"]) {
+    filter: invert(1) hue-rotate(180deg);
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* legacy .container / .section */
+@utility container-page {
+  width: min(100% - 2.5rem, var(--container-page));
+  margin-inline: auto;
+}
+@utility section-pad {
+  padding-block: clamp(4.5rem, 9vw, 7.5rem);
+}
+/* legacy .inline-link */
+@utility inline-link {
+  color: var(--brand-2);
+  font-weight: 600;
+  border-bottom: 2px solid var(--sage-2);
+  transition: border-color 0.2s ease;
+  &:hover {
+    border-color: var(--sage);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

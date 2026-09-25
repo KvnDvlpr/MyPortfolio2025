@@ -1,0 +1,136 @@
+/* ------------------------------------------------------------
+   Hero — static shapes and surfaces. All motion (entrance,
+   blob morph, orbit, floats, drift, parallax) is Framer Motion
+   in src/components/sections/hero-*.tsx.
+------------------------------------------------------------ */
+
+.hero-orb-sage,
+.hero-orb-clay {
+  position: absolute;
+  border-radius: 50%;
+}
+.hero-orb-sage {
+  top: -20%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 760px;
+  max-height: 760px;
+  background: radial-gradient(circle at center, rgba(184, 205, 163, 0.5), rgba(184, 205, 163, 0) 65%);
+}
+.hero-orb-clay {
+  bottom: 6%;
+  left: -12%;
+  width: 46vw;
+  height: 46vw;
+  max-width: 600px;
+  max-height: 600px;
+  background: radial-gradient(circle, rgba(201, 162, 125, 0.32), rgba(201, 162, 125, 0) 60%);
+  filter: blur(24px);
+}
+
+/* visual: sized square; container units give the orbit radius */
+.hero-visual {
+  position: relative;
+  width: min(100%, 340px);
+  aspect-ratio: 1;
+  margin-top: 2rem;
+  display: grid;
+  place-items: center;
+  container-type: inline-size;
+}
+@media (width >= 56.25rem) {
+  .hero-visual {
+    width: min(100%, 500px);
+    margin-top: 0;
+  }
+}
+
+.hero-blob-glow {
+  position: absolute;
+  inset: -12%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(184, 205, 163, 0.6), rgba(184, 205, 163, 0) 65%);
+  filter: blur(30px);
+  opacity: 0.7;
+}
+
+.hero-blob-back,
+.hero-photo {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+.hero-blob-back {
+  position: absolute;
+  inset: 4%;
+  background: linear-gradient(140deg, var(--sage-2), var(--sage) 55%, var(--brand-2));
+  opacity: 0.9;
+  /* static offset lives on the individual properties so motion's x/y (transform) composes with it */
+  translate: 6% 5%;
+  rotate: 8deg;
+}
+.hero-photo {
+  position: relative;
+  z-index: 2;
+  width: 86%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  box-shadow: 0 40px 80px -30px rgba(66, 27, 0, 0.5), inset 0 0 0 6px rgba(255, 255, 255, 0.6);
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 18%;
+  scale: 1.02;
+}
+
+/* orbiting tech icons — the ring is 108% of the visual, so r = 54cqi */
+.hero-orbit {
+  position: absolute;
+  inset: -4%;
+  z-index: 3;
+  border-radius: 50%;
+  border: 1px dashed var(--line-strong);
+  pointer-events: none;
+}
+.hero-orbit-slot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 46px;
+  height: 46px;
+  margin: -23px;
+  transform: rotate(var(--a)) translate(54cqi) rotate(calc(-1 * var(--a)));
+}
+.hero-orbit-item {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft-md);
+}
+.hero-orbit-item img {
+  width: 22px;
+  height: 22px;
+}
+
+.hero-float-tag {
+  padding: 0.45rem 0.7rem;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft-md);
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+@media (width >= 34rem) {
+  .hero-float-tag {
+    padding: 0.55rem 0.9rem;
+    font-size: 0.78rem;
+  }
+}

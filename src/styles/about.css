@@ -1,0 +1,145 @@
+/* ------------------------------------------------------------
+   About — body copy, the closing quote, and the pencil-sketch
+   journey trail behind the section (drawn by JourneySketch).
+------------------------------------------------------------ */
+.about-body p {
+  max-width: 62ch;
+  margin-bottom: 1.2rem;
+  color: var(--ink-2);
+  font-size: 1.05rem;
+}
+.about-body strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.about-quote {
+  position: relative;
+  max-width: 34ch;
+  margin-top: 2rem;
+  padding-top: 1.6rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+/* a short hand-drawn stroke instead of a quote glyph */
+.about-quote::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3.5rem;
+  height: 0.55rem;
+  background: var(--sage-2);
+  opacity: 0.8;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 9'%3E%3Cpath d='M2 6 C 14 2, 26 8, 38 4 S 50 3, 54 5' fill='none' stroke='black' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E")
+    center / 100% 100% no-repeat;
+}
+
+/* journey trail */
+.journey-line {
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.4;
+}
+.journey-line-ghost {
+  stroke-width: 0.8;
+  opacity: 0.22;
+}
+/* dark: chalk, matching the section doodles */
+[data-theme="dark"] .journey-line {
+  stroke: color-mix(in oklab, var(--sage-2) 70%, var(--ink));
+  opacity: 0.5;
+  filter: drop-shadow(0 0 3px color-mix(in oklab, var(--sage) 55%, transparent));
+}
+[data-theme="dark"] .journey-line-ghost {
+  opacity: 0.28;
+}
+
+.journey-stop {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  translate: -7px -7px;
+}
+.journey-dot {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid var(--sage);
+  background: var(--bg);
+  box-shadow: 0 0 0 4px var(--sage-soft);
+}
+[data-theme="dark"] .journey-note {
+  color: color-mix(in oklab, var(--sage-2) 75%, var(--ink));
+  text-shadow: 0 0 8px color-mix(in oklab, var(--sage) 40%, transparent);
+}
+.journey-note {
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--ink-3);
+  white-space: nowrap;
+  rotate: -3deg;
+}
+
+.journey-flag {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.2rem;
+  translate: -4px -30px;
+  font-size: 1.45rem;
+  line-height: 1;
+  color: var(--sage-ink);
+}
+.journey-flag-mark {
+  width: 24px;
+  height: 32px;
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.journey-flag-cloth {
+  fill: var(--sage-soft);
+  stroke: var(--sage);
+}
+
+/* single column: the trail stays as texture, notes would crowd the copy */
+@media (width < 60rem) {
+  .journey-note,
+  .journey-flag span {
+    display: none;
+  }
+  .journey-line {
+    opacity: 0.22;
+  }
+  .journey-stop {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey path {
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+  .journey-stop,
+  .journey-flag {
+    opacity: 1 !important;
+  }
+  .journey-dot {
+    scale: 1 !important;
+  }
+}

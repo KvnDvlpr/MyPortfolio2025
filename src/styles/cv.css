@@ -1,0 +1,294 @@
+/* ------------------------------------------------------------
+   CV viewer dialog — enter/exit is Framer Motion (cv-dialog.tsx)
+------------------------------------------------------------ */
+.cv-panel {
+  box-shadow: 0 50px 100px -30px rgba(0, 0, 0, 0.6);
+}
+
+/* ------------------------------------------------------------
+   /cv — web version of the resume (A4 sheet). Fixed light palette in every
+   theme; print it (or page.pdf()) to regenerate the PDF.
+   Sizes are the legacy cv.html values (its rem was 9.7pt ≈ 12.93px).
+------------------------------------------------------------ */
+.cvdoc {
+  --cv-ink: #2b1a0f;
+  --cv-ink-2: #5a4636;
+  --cv-ink-3: #7a6353;
+  --cv-brand: #421b00;
+  --cv-accent: #6f8f5e;
+  --cv-accent-ink: #4b6b3f;
+  --cv-accent-2: #b8cda3;
+  --cv-line: rgba(66, 27, 0, 0.12);
+  --cv-bg: #d9cfc2;
+
+  display: flow-root; /* keep .cv-page's top margin inside the grey backdrop */
+  min-height: 100dvh;
+  background: var(--cv-bg);
+  color: var(--cv-ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 9.7pt;
+  line-height: 1.45;
+  color-scheme: light;
+}
+.cvdoc ::selection {
+  background: var(--cv-accent-2);
+}
+.cvdoc :where(h1, h2, h3) {
+  font-family: var(--font-sora), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-wrap: wrap;
+  color: inherit;
+}
+.cvdoc :where(ul) {
+  margin: 0;
+}
+
+.cv-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12.9px;
+  padding: 10.3px 16.2px;
+  background: var(--cv-brand);
+  color: #fff;
+  font-size: 11.6px;
+}
+.cv-toolbar a {
+  font-weight: 600;
+  color: var(--cv-brand);
+  background: #fff;
+  border: 0;
+  border-radius: 999px;
+  padding: 7.1px 12.9px;
+  text-decoration: none;
+}
+.cv-toolbar .cv-ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.cv-page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 19.4px auto;
+  padding: 8mm 12mm 6mm;
+  background: #fff;
+  box-shadow: 0 20px 50px -20px rgba(43, 26, 15, 0.4);
+  display: grid;
+  grid-template-columns: 1fr 58mm;
+  column-gap: 8mm;
+}
+
+.cv-head {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 25.9px;
+  padding-bottom: 3mm;
+  margin-bottom: 3mm;
+  border-bottom: 2px solid var(--cv-brand);
+}
+.cv-head h1 {
+  font-size: 24pt;
+  font-weight: 800;
+  color: var(--cv-brand);
+}
+.cv-role {
+  font-size: 11.5pt;
+  color: var(--cv-accent-ink);
+  font-weight: 600;
+  margin-top: 2mm;
+}
+.cv-contact {
+  list-style: none;
+  text-align: right;
+  font-size: 9.2pt;
+  color: var(--cv-ink-2);
+  display: grid;
+  gap: 1mm;
+}
+
+.cvdoc h2 {
+  font-size: 9pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--cv-accent-ink);
+  margin-bottom: 3mm;
+  padding-bottom: 1.5mm;
+  border-bottom: 1px solid var(--cv-line);
+}
+.cv-page section {
+  margin-bottom: 3mm;
+}
+.cv-main section:last-child,
+.cv-page aside section:last-child {
+  margin-bottom: 0;
+}
+.cv-summary {
+  color: var(--cv-ink-2);
+  font-size: 9pt;
+}
+
+.cv-item {
+  margin-bottom: 2.2mm;
+}
+.cv-item-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12.9px;
+}
+.cv-item h3 {
+  font-size: 11.5pt;
+  font-weight: 700;
+}
+.cv-when {
+  font-size: 9pt;
+  color: var(--cv-ink-3);
+  white-space: nowrap;
+}
+.cv-where {
+  font-size: 9.5pt;
+  color: var(--cv-accent-ink);
+  font-weight: 600;
+  margin-bottom: 1.5mm;
+}
+.cv-item p:not(.cv-where),
+.cv-item li {
+  color: var(--cv-ink-2);
+  font-size: 8.7pt;
+}
+.cv-item ul {
+  list-style: disc;
+  padding-left: 3.5mm;
+  margin-top: 1mm;
+  display: grid;
+  gap: 0.5mm;
+}
+.cv-item li::marker {
+  color: var(--cv-accent);
+}
+.cv-item strong {
+  font-weight: 700;
+}
+.cv-link {
+  color: var(--cv-brand);
+  border-bottom: 1px solid var(--cv-accent-2);
+}
+
+.cv-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1mm;
+}
+.cv-tags li {
+  padding: 0.5mm 1.7mm;
+  border-radius: 3mm;
+  background: #f7f2e9;
+  border: 1px solid var(--cv-line);
+  font-family: var(--font-sora), system-ui, sans-serif;
+  font-size: 7.3pt;
+  font-weight: 600;
+  color: var(--cv-ink-2);
+  line-height: 1.45;
+}
+.cv-group {
+  margin-bottom: 2mm;
+}
+.cv-group h3 {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 8.2pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cv-ink-3);
+  margin-bottom: 1.5mm;
+}
+
+.cv-plain {
+  list-style: none;
+  display: grid;
+  gap: 1mm;
+  font-size: 8.5pt;
+  color: var(--cv-ink-2);
+}
+.cv-plain li {
+  display: block;
+  line-height: 1.35;
+}
+.cv-plain strong {
+  color: var(--cv-ink);
+  font-weight: 600;
+}
+.cv-plain small {
+  color: var(--cv-ink-3);
+  font-size: 8.2pt;
+}
+.cv-plain small::before {
+  content: " · ";
+  color: var(--cv-accent);
+}
+
+.cv-foot {
+  grid-column: 1 / -1;
+  margin-top: auto;
+  padding-top: 3mm;
+  border-top: 1px solid var(--cv-line);
+  font-size: 8.2pt;
+  color: var(--cv-ink-3);
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 760px) {
+  .cv-page {
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+    padding: 8mm 6mm;
+    grid-template-columns: 1fr;
+    box-shadow: none;
+  }
+  .cv-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4mm;
+  }
+  .cv-contact {
+    text-align: left;
+  }
+}
+
+/* named page so the A4 / no-margin rule only applies to the CV */
+.cv-page {
+  page: cv;
+}
+@page cv {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body,
+  .cvdoc {
+    background: #fff;
+  }
+  .cv-toolbar {
+    display: none;
+  }
+  .cv-page {
+    margin: 0;
+    box-shadow: none;
+    width: 210mm;
+    min-height: 297mm;
+  }
+}

@@ -1,0 +1,10 @@
+export function KvnMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 9 9" className={className} aria-hidden="true" shapeRendering="crispEdges">
+      <path
+        fill="currentColor"
+        d="M1 0h2v1h-2zM6 0h2v1h-2zM1 1h1v1h-1zM5 1h2v1h-2zM1 2h2v1h-2zM4 2h2v1h-2zM1 3h4v1h-4zM1 4h4v1h-4zM1 5h2v1h-2zM4 5h2v1h-2zM1 6h2v1h-2zM5 6h2v1h-2zM1 7h2v1h-2zM6 7h2v1h-2zM1 8h1v1h-1zM7 8h1v1h-1z"
+      />
+    </svg>
+  );
+}
