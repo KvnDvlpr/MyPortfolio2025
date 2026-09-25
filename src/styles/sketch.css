@@ -1,0 +1,82 @@
+/* ------------------------------------------------------------
+   Sketch layer — doodles behind sections (SketchLayer).
+   Light mode: graphite pencil on paper. Dark mode: glowing chalk.
+   One stroke language shared with the About journey trail.
+------------------------------------------------------------ */
+.sketch-layer {
+  position: absolute;
+  inset: 0;
+  /* under the section's content, above its own background (see .has-sketch) */
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  color: var(--ink-3);
+}
+.sketch-light {
+  color: #fff;
+}
+
+.sketch {
+  position: absolute;
+  overflow: visible;
+  opacity: 0.34;
+}
+/* dark: the same lines become chalk — sage-tinted and softly lit */
+[data-theme="dark"] .sketch-layer:not(.sketch-light) {
+  color: color-mix(in oklab, var(--sage-2) 70%, var(--ink));
+}
+[data-theme="dark"] .sketch {
+  opacity: 0.42;
+  filter: drop-shadow(0 0 3px color-mix(in oklab, var(--sage) 55%, transparent));
+}
+[data-theme="dark"] .sketch-light .sketch {
+  opacity: 0.2;
+  filter: drop-shadow(0 0 3px rgba(184, 205, 163, 0.45));
+}
+.sketch-light .sketch {
+  opacity: 0.14;
+}
+
+.sketch path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.sketch-stroke path {
+  stroke-width: 2.2;
+}
+.sketch-ghost path {
+  stroke-width: 1;
+  opacity: 0.45;
+}
+.sketch .sketch-dashed {
+  stroke-width: 1.4;
+  stroke-dasharray: 3 5;
+}
+.sketch .sketch-fill {
+  fill: currentColor;
+  stroke: none;
+  fill-opacity: 0.55;
+}
+
+/* sections that host a SketchLayer: a stacking context so z-index -1
+   lands above the section background but below everything in it */
+.has-sketch {
+  position: relative;
+  isolation: isolate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sketch path {
+    opacity: 1 !important;
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+  .sketch .sketch-dashed {
+    stroke-dasharray: 3 5 !important;
+  }
+  .sketch-ghost path {
+    opacity: 0.45 !important;
+  }
+}
