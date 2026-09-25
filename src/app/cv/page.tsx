@@ -49,7 +49,7 @@ export default async function CvPage({
             </li>
             <li>Teresa, Rizal, Philippines</li>
             <li>
-              <a href={site.github}>github.com/KvnDvlpr</a>
+              <a href={site.url}>kevindev.vercel.app</a>
             </li>
             <li>
               <a href={site.linkedin}>linkedin.com/in/kvndvlpr</a>
@@ -262,10 +262,11 @@ const projectItems = [
   },
   {
     title: "Personal Portfolio Website",
+    link: "kevindev.vercel.app",
     points: [
-      "Hand-built a responsive portfolio in plain HTML, CSS, and JavaScript without a framework.",
-      "Added interactive sections (card carousel, project showcase, light/dark mode) and a contact form that opens a pre-filled email.",
-      "Built with AI-assisted development and hosted on GitHub Pages.",
+      "Rebuilt my portfolio with Next.js, Tailwind CSS, and shadcn/ui, deployed on Vercel with a responsive layout and light/dark mode.",
+      'Designed interactive sections, including an 8-card "Beyond the code" carousel, an unfold-to-view project showcase, and hover cards for each technology.',
+      "Built with Claude Code as an AI pair programmer, reviewing every change before deploying, and added a downloadable CV and a contact form that opens a pre-filled email.",
     ],
   },
 ];

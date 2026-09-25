@@ -2,6 +2,7 @@ export const site = {
   name: "KvnDvlpr",
   cvPdf: "/assets/Kevin-Acebuche-CV.pdf",
   cvFileName: "Kevin-Acebuche-CV.pdf",
+  url: "https://kevindev.vercel.app/",
   github: "https://github.com/KvnDvlpr",
   linkedin: "https://www.linkedin.com/in/kvndvlpr",
   facebook: "https://www.facebook.com/kvndvlpr",
